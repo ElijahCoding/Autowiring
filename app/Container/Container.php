@@ -2,8 +2,8 @@
 
 namespace App\Container;
 
+use ReflectionClass;
 use App\Container\Exceptions\NotFoundException;
-
 
 class Container
 {
@@ -47,9 +47,17 @@ class Container
       throw new NotFoundException;
     }
 
-    
+    $reflector = $this->getReflector($name);
+
+    dump($reflector);
+    die();
 
     return new $name();
+  }
+
+  protected function getReflector($class)
+  {
+    return new ReflectionClass($class);
   }
 
   public function __get($name)
