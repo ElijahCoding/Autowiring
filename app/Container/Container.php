@@ -20,7 +20,7 @@ class Container
       static $resolved;
 
       if (!$resolved) {
-        $resolved = $closure();
+        $resolved = $closure($this);
       }
 
       return $resolved;
@@ -37,7 +37,7 @@ class Container
     if (!$this->has($name)) {
       throw new NotFoundException;
     }
-    return $this->items[$name]();
+    return $this->items[$name]($this);
   }
 
   public function __get($name)
