@@ -20,11 +20,6 @@ class Config
 
   protected $cache = [];
 
-  public function __construct()
-  {
-    dump('init');
-  }
-
   public function get($key, $default = null)
   {
     if ($this->existsInCache($key)) {

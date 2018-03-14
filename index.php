@@ -13,3 +13,5 @@ $container->share('config', function () {
 $container->share('database', function ($container) {
     return new App\Database\Database($container->config);
 });
+
+dump($container->database->connect());
