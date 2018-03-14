@@ -4,4 +4,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 $container = new App\Container\Container;
 
-dump($container);
+$container->set('config', function () {
+  return new App\Config\Config;
+});
+
+dump($container->get('config'));
