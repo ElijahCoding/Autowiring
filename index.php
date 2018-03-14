@@ -1,18 +1,15 @@
 <?php
+
+use App\Config\Config;
 use App\Database\Database;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
 $container = new App\Container\Container;
 
-$container->share('config', function () {
-  return new App\Config\Config;
+$container->share(Database::class, function ($container) {
+    return new App\Database\Database($container->get(Config::class));
 });
 
 
-$container->share('database', function ($container) {
-    return new App\Database\Database($container->config);
-});
-
-
-dump((new App\Controllers\HomeController($container->config, $container->database))->index());
+dump((new App\Controllers\HomeController($container->get(Config::class), $container->get(Database::class)))->index());

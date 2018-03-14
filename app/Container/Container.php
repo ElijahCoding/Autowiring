@@ -34,10 +34,22 @@ class Container
 
   public function get($name)
   {
-    if (!$this->has($name)) {
+    if ($this->has($name)) {
+      return $this->items[$name]($this);
+    }
+
+    return $this->autowire($name);
+  }
+
+  public function autowire($name)
+  {
+    if (!class_exists($name)) {
       throw new NotFoundException;
     }
-    return $this->items[$name]($this);
+
+    
+
+    return new $name();
   }
 
   public function __get($name)
