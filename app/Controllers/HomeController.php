@@ -19,7 +19,8 @@ class HomeController
   public function index()
   {
     return [
-
+      $this->config->get('app.name'),
+      $this->database->connect()
     ];
   }
 }

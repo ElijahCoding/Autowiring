@@ -14,4 +14,5 @@ $container->share('database', function ($container) {
     return new App\Database\Database($container->config);
 });
 
-dump($container->database->connect());
+
+dump((new App\Controllers\HomeController($container->config, $container->database))->index());
