@@ -2,7 +2,9 @@
 
 namespace App\Container\Exceptions;
 
-class NotFoundException
+use Exception;
+
+class NotFoundException extends Exception
 {
-  
+
 }

@@ -2,6 +2,9 @@
 
 namespace App\Container;
 
+use App\Container\Exceptions\NotFoundException;
+
+
 class Container
 {
   protected $items = [];
@@ -22,5 +25,10 @@ class Container
       throw new NotFoundException;
     }
     return $this->items[$name]();
+  }
+
+  public function __get($name)
+  {
+    return $this->get($name);
   }
 }
